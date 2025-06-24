@@ -1,0 +1,28 @@
+.company-create-page {
+    padding: 1rem;
+    font-family: "Segoe UI", sans-serif;
+}
+
+.company-create-header {
+    display: flex;
+    justify-content: flex-start;
+    margin-bottom: 1rem;
+}
+
+.back-button {
+    background-color: transparent;
+    color: var(--color-azul);
+    border: 1px solid var(--color-azul);
+    border-radius: 6px;
+    padding: 0.4rem 0.8rem;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.back-button:hover {
+    background-color: var(--color-azul-claro);
+}

@@ -1,0 +1,35 @@
+.company-list-page {
+    padding: 1rem;
+    font-family: "Segoe UI", sans-serif;
+}
+
+.company-list-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.company-list-header h1 {
+    font-size: 1.8rem;
+    color: var(--color-negro);
+}
+
+.create-button {
+    background-color: var(--color-azul);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 0.5rem 1rem;
+    font-size: 0.95rem;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.create-button:hover {
+    background-color: #0248a2;
+}

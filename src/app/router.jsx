@@ -3,10 +3,14 @@ import { isAuthenticated } from "../modules/shared/utils/authUtils";
 import Layout from "../modules/shared/layout/Layout";
 import { HomePage } from "../modules/home/pages/Home";
 import LoginPage from "../modules/auth/pages/Login/Login";
+
 import StudentListPage from "../modules/students/pages/StudentList/StudentList";
 import StudentCreatePage from "../modules/students/pages/StudentCreate/StudentCreate";
 import StudentEditPage from "../modules/students/pages/StudentEdit/StudentEdit";
 import StudentViewPage from "../modules/students/pages/StudentView/StudentView";
+
+import CompanyListPage from "../modules/companies/pages/CompanyList/CompanyList";
+import CompanyCreatePage from "../modules/companies/pages/CompanyCreate/CompanyCreate";
 
 const ProtectedRoute = ({ children }) => {
     return isAuthenticated() ? children : <Navigate to="/login" />;
@@ -77,7 +81,28 @@ const router = createBrowserRouter([
                 </Layout>
             </ProtectedRoute>
         ),
-    }
+    },
+    {
+        path: "/companies",
+        element: (
+            <ProtectedRoute>
+                <Layout>
+                    <CompanyListPage />
+                </Layout>
+            </ProtectedRoute>
+        ),
+    },
+    {
+        path: "/companies/create",
+        element: (
+            <ProtectedRoute>
+                <Layout>
+                    <CompanyCreatePage />
+                </Layout>
+            </ProtectedRoute>
+        ),
+    },
+    {/**TODO: Company - Edit, View */}
 ]);
 
 export default router;
