@@ -14,6 +14,8 @@ import CompanyCreatePage from "../modules/companies/pages/CompanyCreate/CompanyC
 import CompanyViewPage from "../modules/companies/pages/CompanyView/CompanyView";
 import CompanyEditPage from "../modules/companies/pages/CompanyEdit/CompanyEdit";
 
+import OfferListPage from "../modules/offers/pages/OfferList/OfferList";
+
 const ProtectedRoute = ({ children }) => {
     return isAuthenticated() ? children : <Navigate to="/login" />;
 };
@@ -120,6 +122,16 @@ const router = createBrowserRouter([
             <ProtectedRoute>
                 <Layout>
                     <CompanyEditPage />
+                </Layout>
+            </ProtectedRoute>
+        ),
+    },
+    {
+        path: "/offers",
+        element: (
+            <ProtectedRoute>
+                <Layout>
+                    <OfferListPage />
                 </Layout>
             </ProtectedRoute>
         ),

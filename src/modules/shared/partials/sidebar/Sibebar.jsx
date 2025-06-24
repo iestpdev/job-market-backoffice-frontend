@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { FaBars, FaHome } from "react-icons/fa";
 import "./Sidebar.css";
 
@@ -16,52 +17,52 @@ export const Sidebar = () => {
             </div>
 
             <nav className="sidebar-nav">
-                <a href="/" className="sidebar-link">
+                <Link to="/" className="sidebar-link">
                     <FaHome className="icon" />
                     {isOpen && <span>Dashboard</span>}
-                </a>
+                </Link>
             </nav>
 
             <nav className="sidebar-nav">
-                <a href="/users" className="sidebar-link">
+                <Link to="/users" className="sidebar-link">
                     <FaHome className="icon" />
                     {isOpen && <span>Usuarios</span>}
-                </a>
+                </Link>
             </nav>
-            
+
             <nav className="sidebar-nav">
-                <a href="/students" className="sidebar-link">
+                <Link to="/students" className="sidebar-link">
                     <FaHome className="icon" />
                     {isOpen && <span>Alumnos</span>}
-                </a>
+                </Link>
             </nav>
 
             <nav className="sidebar-nav">
-                <a href="/companies" className="sidebar-link">
+                <Link to="/companies" className="sidebar-link">
                     <FaHome className="icon" />
                     {isOpen && <span>Empresas</span>}
-                </a>
+                </Link>
             </nav>
 
             <nav className="sidebar-nav">
-                <a href="/teachers" className="sidebar-link">
+                <Link to="/teachers" className="sidebar-link">
                     <FaHome className="icon" />
                     {isOpen && <span>Docentes</span>}
-                </a>
+                </Link>
             </nav>
 
             <nav className="sidebar-nav">
-                <a href="/offers" className="sidebar-link">
+                <Link to="/offers" className="sidebar-link">
                     <FaHome className="icon" />
                     {isOpen && <span>Ofertas</span>}
-                </a>
+                </Link>
             </nav>
 
             <nav className="sidebar-nav">
-                <a href="/candidacies" className="sidebar-link">
+                <Link to="/candidacies" className="sidebar-link">
                     <FaHome className="icon" />
                     {isOpen && <span>Postulaciones</span>}
-                </a>
+                </Link>
             </nav>
         </div>
     );

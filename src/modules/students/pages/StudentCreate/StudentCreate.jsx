@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import useStudentCreate from "../../hooks/useStudentCreate";
-import StudentForm from "../../components/StudenForm/StudentForm";
+import StudentForm from "../../components/StudentForm/StudentForm";
 import { FaArrowLeft } from "react-icons/fa";
 import "./StudentCreate.css";
 

@@ -2,7 +2,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { getById } from "../../api/students";
 import useStudentUpdate from "../../hooks/useStudentUpdate";
-import StudentForm from "../../components/StudenForm/StudentForm";
+import StudentForm from "../../components/StudentForm/StudentForm";
 import { FaArrowLeft } from "react-icons/fa";
 import "./StudentEdit.css";
 

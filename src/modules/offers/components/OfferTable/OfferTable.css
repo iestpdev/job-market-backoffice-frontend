@@ -1,0 +1,22 @@
+.offer-table-container {
+    margin-top: 2rem;
+    background: white;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    font-family: "Segoe UI", sans-serif;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+}
+.actions-buttons {
+    display: flex;
+    gap: 0.5rem;
+}
+.icon-button {
+    background: none;
+    border: none;
+    color: #0358CB;
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+.icon-button:hover {
+    color: #024aad;
+}
