@@ -11,6 +11,8 @@ import StudentViewPage from "../modules/students/pages/StudentView/StudentView";
 
 import CompanyListPage from "../modules/companies/pages/CompanyList/CompanyList";
 import CompanyCreatePage from "../modules/companies/pages/CompanyCreate/CompanyCreate";
+import CompanyViewPage from "../modules/companies/pages/CompanyView/CompanyView";
+import CompanyEditPage from "../modules/companies/pages/CompanyEdit/CompanyEdit";
 
 const ProtectedRoute = ({ children }) => {
     return isAuthenticated() ? children : <Navigate to="/login" />;
@@ -102,7 +104,26 @@ const router = createBrowserRouter([
             </ProtectedRoute>
         ),
     },
-    {/**TODO: Company - Edit, View */}
+    {
+        path: "/companies/view/:id",
+        element: (
+            <ProtectedRoute>
+                <Layout>
+                    <CompanyViewPage />
+                </Layout>
+            </ProtectedRoute>
+        ),
+    },
+    {
+        path: "/companies/edit/:id",
+        element: (
+            <ProtectedRoute>
+                <Layout>
+                    <CompanyEditPage />
+                </Layout>
+            </ProtectedRoute>
+        ),
+    },
 ]);
 
 export default router;
