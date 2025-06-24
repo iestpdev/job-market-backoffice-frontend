@@ -1,10 +1,11 @@
 import { useMemo } from "react";
+import { Link } from "react-router-dom";
 import { useGenericTable } from "../../../shared/components/table/tableConfig";
 import GenericTable from "../../../shared/components/table/Table";
 import { FaEye, FaEdit, FaTrash } from "react-icons/fa";
 import "./StudentTable.css";
 
-export default function StudentTable({ students, onView, onEdit, onDelete }) {
+export default function StudentTable({ students, onView, onDelete }) {
     const columns = useMemo(
         () => [
             { accessorKey: "NOMBRES", header: "Nombres", enableColumnFilter: true },
@@ -17,12 +18,18 @@ export default function StudentTable({ students, onView, onEdit, onDelete }) {
                 header: "Acciones",
                 cell: ({ row }) => (
                     <div className="actions-buttons">
-                        <button onClick={() => onView(row.original)} title="Ver más">
+                        <Link to={`/students/view/${row.original.ID}`} title="Ver más" className="icon-button">
                             <FaEye />
-                        </button>
-                        <button onClick={() => onEdit(row.original)} title="Editar">
+                        </Link>
+
+                        <Link
+                            to={`/students/edit/${row.original.ID}`}
+                            title="Editar"
+                            className="icon-button"
+                        >
                             <FaEdit />
-                        </button>
+                        </Link>
+
                         <button onClick={() => onDelete(row.original)} title="Eliminar">
                             <FaTrash />
                         </button>
@@ -31,7 +38,7 @@ export default function StudentTable({ students, onView, onEdit, onDelete }) {
                 enableColumnFilter: false,
             },
         ],
-        [onView, onEdit, onDelete]
+        [onView, onDelete]
     );
 
     const table = useGenericTable({ columns, data: students });

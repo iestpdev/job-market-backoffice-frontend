@@ -3,11 +3,13 @@ import Navbar from "../partials/navbar/Navbar";
 
 const Layout = ({ children }) => {
     return (
-        <div style={{ display: "flex" }}>
+        <div style={{ display: "flex", height: "100vh" }}>
             <Sidebar />
             <div style={{ flex: 1, display: "flex", flexDirection: "column" }}>
                 <Navbar />
-                <main style={{ padding: "1rem", flex: 1 }}>{children}</main>
+                <main style={{ flex: 1, overflow: "auto", padding: "1rem" }}>
+                    {children}
+                </main>
             </div>
         </div>
     );

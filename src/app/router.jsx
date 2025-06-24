@@ -3,7 +3,10 @@ import { isAuthenticated } from "../modules/shared/utils/authUtils";
 import Layout from "../modules/shared/layout/Layout";
 import { HomePage } from "../modules/home/pages/Home";
 import LoginPage from "../modules/auth/pages/Login/Login";
-import StudentListPage from "../modules/students/pages/StudentList";
+import StudentListPage from "../modules/students/pages/StudentList/StudentList";
+import StudentCreatePage from "../modules/students/pages/StudentCreate/StudentCreate";
+import StudentEditPage from "../modules/students/pages/StudentEdit/StudentEdit";
+import StudentViewPage from "../modules/students/pages/StudentView/StudentView";
 
 const ProtectedRoute = ({ children }) => {
     return isAuthenticated() ? children : <Navigate to="/login" />;
@@ -45,6 +48,36 @@ const router = createBrowserRouter([
             </ProtectedRoute>
         ),
     },
+    {
+        path: "/students/create",
+        element: (
+            <ProtectedRoute>
+                <Layout>
+                    <StudentCreatePage />
+                </Layout>
+            </ProtectedRoute>
+        ),
+    },
+    {
+        path: "/students/edit/:id",
+        element: (
+            <ProtectedRoute>
+                <Layout>
+                    <StudentEditPage />
+                </Layout>
+            </ProtectedRoute>
+        ),
+    },
+    {
+        path: "/students/view/:id",
+        element: (
+            <ProtectedRoute>
+                <Layout>
+                    <StudentViewPage />
+                </Layout>
+            </ProtectedRoute>
+        ),
+    }
 ]);
 
 export default router;

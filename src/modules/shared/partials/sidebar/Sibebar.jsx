@@ -21,6 +21,13 @@ export const Sidebar = () => {
                     {isOpen && <span>Dashboard</span>}
                 </a>
             </nav>
+
+            <nav className="sidebar-nav">
+                <a href="/users" className="sidebar-link">
+                    <FaHome className="icon" />
+                    {isOpen && <span>Usuarios</span>}
+                </a>
+            </nav>
             
             <nav className="sidebar-nav">
                 <a href="/students" className="sidebar-link">
