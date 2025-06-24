@@ -1,0 +1,65 @@
+.student-table-container {
+    overflow-x: auto;
+    margin-top: 1rem;
+    background: #fff;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    font-family: "Segoe UI", sans-serif;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.student-table-container table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 700px;
+}
+
+.student-table-container thead {
+    background-color: var(--color-azul);
+    color: white;
+}
+
+.student-table-container th,
+.student-table-container td {
+    padding: 0.75rem 1rem;
+    text-align: left;
+    font-size: 0.95rem;
+    border-bottom: 1px solid #e6e6e6;
+}
+
+.student-table-container tbody tr:hover {
+    background-color: #f9f9f9;
+}
+
+.student-table-container td button {
+    background: none;
+    border: none;
+    color: #0358CB;
+    cursor: pointer;
+    padding: 0.25rem;
+    font-size: 1rem;
+}
+
+.actions-buttons {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.actions-buttons button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #0358CB;
+    color: white;
+    border-radius: 4px;
+    padding: 0.3rem 0.5rem;
+    transition: background-color 0.2s ease;
+}
+
+.actions-buttons button:hover {
+    background-color: #0248a2;
+}
+
+.actions-buttons svg {
+    font-size: 1rem;
+}

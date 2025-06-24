@@ -1,8 +1,9 @@
 import { createBrowserRouter, Navigate } from "react-router-dom";
 import { isAuthenticated } from "../modules/shared/utils/authUtils";
-import LoginPage from "../modules/auth/pages/Login/Login";
 import Layout from "../modules/shared/layout/Layout";
 import { HomePage } from "../modules/home/pages/Home";
+import LoginPage from "../modules/auth/pages/Login/Login";
+import StudentListPage from "../modules/students/pages/StudentList";
 
 const ProtectedRoute = ({ children }) => {
     return isAuthenticated() ? children : <Navigate to="/login" />;
@@ -30,6 +31,16 @@ const router = createBrowserRouter([
             <ProtectedRoute>
                 <Layout>
                     <HomePage />
+                </Layout>
+            </ProtectedRoute>
+        ),
+    },
+    {
+        path: "/students",
+        element: (
+            <ProtectedRoute>
+                <Layout>
+                    <StudentListPage />
                 </Layout>
             </ProtectedRoute>
         ),

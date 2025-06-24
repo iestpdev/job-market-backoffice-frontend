@@ -9,6 +9,6 @@ export default function usePermissions() {
 
     return {
         isAdmin,
-        //canViewOffers: isCompany,
+        adminId: auth?.user?.id,
     };
 }
