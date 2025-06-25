@@ -1,0 +1,30 @@
+.offer-details-page {
+    padding: 1.5rem;
+    font-family: "Segoe UI", sans-serif;
+}
+
+.offer-details-header {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin-bottom: 1rem;
+}
+
+.back-button {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background-color: white;
+    color: #0358cb;
+    border: 2px solid #0358cb;
+    padding: 0.4rem 0.8rem;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background-color 0.2s ease;
+}
+
+.back-button:hover {
+    background-color: #f0f7ff;
+}

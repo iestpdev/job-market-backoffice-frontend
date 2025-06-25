@@ -1,5 +1,6 @@
 import { EditorContent } from "@tiptap/react";
 import Toolbar from "../../../shared/components/tiptap/Toolbar";
+import Select from "react-select";
 import "./OfferForm.css";
 
 const OfferForm = ({
@@ -12,6 +13,12 @@ const OfferForm = ({
     companies = [],
     isEdit = false
 }) => {
+
+    const companyOptions = companies.map((company) => ({
+        value: company.ID,
+        label: company.RAZON_SOCIAL,
+    }));
+
     return (
         <form className="offer-form" onSubmit={handleSubmit}>
             <h2>
@@ -25,14 +32,22 @@ const OfferForm = ({
 
                 <div className="form-group">
                     <label>Empresa:</label>
-                    <select name="companyId" value={formData.companyId} onChange={handleChange} required>
-                        <option value="">Seleccione una empresa</option>
-                        {companies.map((company) => (
-                            <option key={company.ID} value={company.ID}>
-                                {company.RAZON_SOCIAL}
-                            </option>
-                        ))}
-                    </select>
+                    <Select
+                        name="companyId"
+                        options={companyOptions}
+                        value={companyOptions.find((opt) => opt.value === formData.companyId) || null}
+                        onChange={(selected) =>
+                            handleChange({
+                                target: {
+                                    name: "companyId",
+                                    value: selected?.value || "",
+                                    type: "select-one",
+                                },
+                            })
+                        }
+                        placeholder="Seleccione una empresa"
+                        isClearable
+                    />
                 </div>
 
                 <div className="form-group">

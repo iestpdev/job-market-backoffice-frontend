@@ -3,9 +3,12 @@ import { Link } from "react-router-dom";
 import { useGenericTable } from "../../../shared/components/table/tableConfig";
 import GenericTable from "../../../shared/components/table/Table";
 import { FaEye, FaEdit, FaTrash } from "react-icons/fa";
+import usePermissions from "../../../shared/hooks/usePermissions";
 import "./StudentTable.css";
 
 export default function StudentTable({ students, onView, onDelete }) {
+    const { isTutor } = usePermissions(); // detectamos el rol actual
+
     const columns = useMemo(
         () => [
             { accessorKey: "NOMBRES", header: "Nombres", enableColumnFilter: true },
@@ -18,27 +21,34 @@ export default function StudentTable({ students, onView, onDelete }) {
                 header: "Acciones",
                 cell: ({ row }) => (
                     <div className="actions-buttons">
-                        <Link to={`/students/view/${row.original.ID}`} title="Ver más" className="icon-button">
+                        <Link
+                            to={`/students/view/${row.original.ID}`}
+                            title="Ver más"
+                            className="icon-button"
+                        >
                             <FaEye />
                         </Link>
 
-                        <Link
-                            to={`/students/edit/${row.original.ID}`}
-                            title="Editar"
-                            className="icon-button"
-                        >
-                            <FaEdit />
-                        </Link>
-
-                        <button onClick={() => onDelete(row.original)} title="Eliminar">
-                            <FaTrash />
-                        </button>
+                        {!isTutor && (
+                            <>
+                                <Link
+                                    to={`/students/edit/${row.original.ID}`}
+                                    title="Editar"
+                                    className="icon-button"
+                                >
+                                    <FaEdit />
+                                </Link>
+                                <button onClick={() => onDelete(row.original)} title="Eliminar">
+                                    <FaTrash />
+                                </button>
+                            </>
+                        )}
                     </div>
                 ),
                 enableColumnFilter: false,
             },
         ],
-        [onView, onDelete]
+        [onView, onDelete, isTutor] // asegúrate de incluir isTutor como dependencia
     );
 
     const table = useGenericTable({ columns, data: students });

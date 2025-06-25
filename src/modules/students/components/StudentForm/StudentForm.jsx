@@ -80,7 +80,6 @@ const StudentForm = ({ student, onSubmit }) => {
 
     return (
         <form onSubmit={handleSubmit} className="student-form-container">
-            <h2>Editar Perfil</h2>
 
             <div className="student-form-group">
                 <label>Nombres:</label>

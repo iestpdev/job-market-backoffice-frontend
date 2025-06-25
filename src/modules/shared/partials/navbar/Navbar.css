@@ -18,8 +18,11 @@
 }
 
 .navbar-logo {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
     font-weight: bold;
-    font-size: 1.2rem;
+    font-size: 2.3rem;
     color: var(--color-negro);
     text-decoration: none;
 }

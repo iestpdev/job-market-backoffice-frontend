@@ -6,9 +6,12 @@ export default function usePermissions() {
     const role = auth?.user?.tipo;
 
     const isAdmin = role === "ADMIN";
+    const isTutor = role === "TUTOR";
 
     return {
         isAdmin,
         adminId: auth?.user?.id,
+        isTutor,
+        tutorId: auth?.user?.tutorId,
     };
 }

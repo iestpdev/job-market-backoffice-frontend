@@ -14,10 +14,9 @@ export default function CompanyEditPage() {
     if (isError) return <p className="company-edit-error">Error al cargar la empresa.</p>;
 
     return (
-        <div className="company-edit-container">
-            <h2 className="company-edit-title">Editar Empresa</h2>
+        <>
             <CompanyForm company={company} onSubmit={mutate} />
             {isPending && <p className="company-edit-updating">Actualizando datos...</p>}
-        </div>
+        </>
     );
 }

@@ -1,0 +1,37 @@
+.tutor-edit-container {
+    max-width: 900px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.05);
+}
+
+.tutor-edit-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.tutor-edit-title {
+    font-size: 1.6rem;
+    color: #0358CB;
+}
+
+.back-button {
+    background-color: white;
+    color: #0358CB;
+    border: 2px solid #0358CB;
+    padding: 0.4rem 0.8rem;
+    border-radius: 6px;
+    cursor: pointer;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.tutor-edit-loading {
+    text-align: center;
+    margin-top: 2rem;
+    font-size: 1.1rem;
+}

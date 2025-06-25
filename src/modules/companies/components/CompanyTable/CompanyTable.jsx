@@ -4,9 +4,12 @@ import { useGenericTable } from "../../../shared/components/table/tableConfig";
 import GenericTable from "../../../shared/components/table/Table";
 import { FaEye, FaEdit } from "react-icons/fa";
 import { getCompanyActions } from "../../utils/companyActions";
+import usePermissions from "../../../shared/hooks/usePermissions";
 import "./CompanyTable.css";
 
 export default function CompanyTable({ companies, onActivate, onDeactivate, onDelete }) {
+    const { isTutor } = usePermissions();
+
     const columns = useMemo(() => [
         { accessorKey: "RAZON_SOCIAL", header: "Razón Social", enableColumnFilter: true },
         { accessorKey: "RUC", header: "RUC", enableColumnFilter: true },
@@ -19,21 +22,26 @@ export default function CompanyTable({ companies, onActivate, onDeactivate, onDe
                     <Link to={`/companies/view/${row.original.ID}`} title="Ver más" className="icon-button">
                         <FaEye />
                     </Link>
-                    <Link to={`/companies/edit/${row.original.ID}`} title="Editar" className="icon-button">
-                        <FaEdit />
-                    </Link>
 
-                    {getCompanyActions({
-                        row,
-                        onActivate,
-                        onDeactivate,
-                        onDelete,
-                    })}
+                    {!isTutor && (
+                        <>
+                            <Link to={`/companies/edit/${row.original.ID}`} title="Editar" className="icon-button">
+                                <FaEdit />
+                            </Link>
+
+                            {getCompanyActions({
+                                row,
+                                onActivate,
+                                onDeactivate,
+                                onDelete,
+                            })}
+                        </>
+                    )}
                 </div>
             ),
             enableColumnFilter: false,
         }
-    ], [onDelete]);
+    ], [onDelete, isTutor, onActivate, onDeactivate]);
 
     const table = useGenericTable({ columns, data: companies });
 

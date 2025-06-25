@@ -27,6 +27,7 @@ export default function StudentEditPage() {
                 <button className="back-button" onClick={() => navigate("/students")}>
                     <FaArrowLeft /> Volver
                 </button>
+                <h2>Actualizar alumno</h2>
             </div>
             <StudentForm student={data} onSubmit={mutate} loading={isPending} />
         </div>

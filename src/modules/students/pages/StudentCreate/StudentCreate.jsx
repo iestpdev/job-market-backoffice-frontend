@@ -14,6 +14,7 @@ export default function StudentCreatePage() {
                 <button className="back-button" onClick={() => navigate("/students")}>
                     <FaArrowLeft /> Volver
                 </button>
+                <h2>Registrar alumno</h2>
             </div>
             <StudentForm onSubmit={mutate} loading={isPending} />
         </div>

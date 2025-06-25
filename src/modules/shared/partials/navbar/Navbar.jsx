@@ -13,7 +13,9 @@ export default function Navbar() {
 
     const {
         isAdmin,
-        adminId
+        adminId,
+        isTutor,
+        tutorId,
     } = usePermissions();
 
     const handleLogout = () => {
@@ -43,7 +45,10 @@ export default function Navbar() {
                     {dropdownOpen && (
                         <div className="navbar-dropdown">
                             {isAdmin && adminId && (
-                                <Link to={`/admin/edit/${adminId}`} className="dropdown-item">Mi Perfil</Link>
+                                <Link to={`/user/edit/${adminId}`} className="dropdown-item">Mi Perfil</Link>
+                            )}
+                            {isTutor && tutorId && (
+                                <Link to={`/tutors/edit/${tutorId}`} className="dropdown-item">Mi Perfil</Link>
                             )}
                             <button onClick={handleLogout} className="dropdown-item">Cerrar sesión</button>
                         </div>
