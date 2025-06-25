@@ -30,6 +30,13 @@ export default function useOfferCreateForm(companyId) {
 
     const handleChange = (e) => {
         const { name, value, type, checked } = e.target;
+
+        let newValue = type === "checkbox" ? checked : value;
+
+        if (name === "companyId") {
+            newValue = parseInt(value);
+        }
+
         if (name === "sueldo") {
             const newSueldo = Number(value);
             setFormData((prev) => ({
@@ -40,10 +47,11 @@ export default function useOfferCreateForm(companyId) {
         } else {
             setFormData((prev) => ({
                 ...prev,
-                [name]: type === "checkbox" ? checked : value,
+                [name]: newValue,
             }));
         }
     };
+
 
     const mutation = useMutation({
         mutationFn: create,
@@ -65,7 +73,6 @@ export default function useOfferCreateForm(companyId) {
             requisitos: requisitosEditor?.getHTML() || "",
             beneficios: beneficiosEditor?.getHTML() || "",
             fechaPublicacion: new Date().toISOString(),
-            companyId,
         };
         mutation.mutate(payload);
     };

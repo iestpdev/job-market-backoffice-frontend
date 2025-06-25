@@ -1,13 +1,15 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import OfferForm from "../../components/OfferForm/OfferForm";
 import { getAll as getAllCompanies } from "../../../companies/api/companies";
 import useOfferCreateForm from "../../hooks/useOfferCreate";
 import "./OfferCreate.css";
 
 export default function OfferCreatePage() {
+    const navigate = useNavigate();
     const [companies, setCompanies] = useState([]);
-
     const [companyId, setCompanyId] = useState("");
+
     const {
         formData,
         descripcionEditor,
@@ -33,11 +35,17 @@ export default function OfferCreatePage() {
 
     const handleCompanyChange = (e) => {
         handleChange(e);
-        setCompanyId(e.target.value);
+        if (e.target.name === "companyId") {
+            setCompanyId(e.target.value);
+        }
     };
 
     return (
-        <>
+        <div className="offer-create-page">
+            <button className="back-button" onClick={() => navigate(-1)}>
+                ⬅ Volver
+            </button>
+
             <OfferForm
                 formData={formData}
                 descripcionEditor={descripcionEditor}
@@ -50,6 +58,6 @@ export default function OfferCreatePage() {
             />
 
             {isPending && <p className="offer-create-loading">Guardando oferta...</p>}
-        </>
+        </div>
     );
 }
