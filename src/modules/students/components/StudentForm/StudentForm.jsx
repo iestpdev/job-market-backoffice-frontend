@@ -11,6 +11,8 @@ const StudentForm = ({ student, onSubmit }) => {
         fechNac: "",
         tipoDOI: "",
         numDOI: "",
+        programaEstudio: "",
+        esEgresado: false,
         curriculum: null,
     });
 
@@ -23,14 +25,16 @@ const StudentForm = ({ student, onSubmit }) => {
                 fechNac: student.FECH_NACIMIENTO?.slice(0, 10) || "",
                 tipoDOI: student.TIPO_DOI || "",
                 numDOI: student.NUM_DOI || "",
+                programaEstudio: student.PROGRAMA_ESTUDIO || "",
+                esEgresado: !!student.ES_EGRESADO,
                 curriculum: null,
             });
         }
     }, [student]);
 
     const handleChange = (e) => {
-        const { name, value } = e.target;
-        let newValue = value;
+        const { name, value, type, checked } = e.target;
+        let newValue = type === "checkbox" ? checked : value;
 
         if (name === "tipoDOI") {
             setForm((prev) => ({
@@ -67,10 +71,8 @@ const StudentForm = ({ student, onSubmit }) => {
 
         for (const key in form) {
             const value = form[key];
-
             if (value !== null && value !== undefined) {
                 if (key === "curriculum" && !(value instanceof File)) continue;
-
                 formData.append(key, value);
             }
         }
@@ -80,7 +82,6 @@ const StudentForm = ({ student, onSubmit }) => {
 
     return (
         <form onSubmit={handleSubmit} className="student-form-container">
-
             <div className="student-form-group">
                 <label>Nombres:</label>
                 <input type="text" name="nombres" value={form.nombres} onChange={handleChange} required />
@@ -124,6 +125,29 @@ const StudentForm = ({ student, onSubmit }) => {
                     required
                     placeholder={form.tipoDOI === "DNI" ? "Máx. 8 dígitos" : "Máx. 20 caracteres"}
                 />
+            </div>
+
+            <div className="student-form-group">
+                <label>Programa de Estudio:</label>
+                <input
+                    type="text"
+                    name="programaEstudio"
+                    value={form.programaEstudio}
+                    onChange={handleChange}
+                    required
+                />
+            </div>
+
+            <div className="student-form-group">
+                <label>
+                    <input
+                        type="checkbox"
+                        name="esEgresado"
+                        checked={form.esEgresado}
+                        onChange={handleChange}
+                    />
+                    &nbsp;¿Es egresado?
+                </label>
             </div>
 
             <div className="student-form-group">

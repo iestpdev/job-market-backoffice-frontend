@@ -29,6 +29,15 @@ export const create = async (student) => {
     return data;
 };
 
+export const createWithFormData = async (formData) => {
+    const { data } = await axios.post("/student", formData, {
+        headers: {
+            "Content-Type": "multipart/form-data",
+        },
+    });
+    return data;
+};
+
 export const deleteById = async (id) => {
     const { data } = await axios.delete(`/student/${id}`);
     return data;

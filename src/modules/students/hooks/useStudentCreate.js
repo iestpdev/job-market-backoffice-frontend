@@ -1,10 +1,10 @@
 import { useMutation } from "@tanstack/react-query";
-import { create } from "../api/students";
+import { createWithFormData } from "../api/students";
 import { showSuccess, showError } from "../../shared/components/toast/toast";
 
 export default function useStudentCreate(onSuccess) {
     return useMutation({
-        mutationFn: async (formData) => await create(formData),
+        mutationFn: async (formData) => await createWithFormData(formData),
         onSuccess: (_, variables) => {
             showSuccess("Alumno creado correctamente");
             if (onSuccess) onSuccess(variables);
