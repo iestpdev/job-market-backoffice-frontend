@@ -1,22 +1,120 @@
+.offer-list-page {
+    padding: 2rem;
+    min-height: 100vh;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+.offer-list-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.offer-list-header h1 {
+    font-size: 1.8rem;
+    color: #0358CB;
+}
+
+.create-button {
+    background-color: #0358CB;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 0.5rem 1rem;
+    font-size: 0.95rem;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    text-decoration: none;
+}
+
+.create-button:hover {
+    background-color: #0248a2;
+}
+
 .offer-table-container {
-    margin-top: 2rem;
-    background: white;
+    overflow-x: auto;
+    margin-top: 1rem;
+    background: #fff;
     border-radius: 8px;
     border: 1px solid #ddd;
     font-family: "Segoe UI", sans-serif;
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
 }
+
+.offer-table-container table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 700px;
+}
+
+.offer-table-container thead {
+    background-color: var(--color-azul);
+    color: white;
+}
+
+.offer-table-container th,
+.offer-table-container td {
+    padding: 0.75rem 1rem;
+    text-align: left;
+    font-size: 0.95rem;
+    border-bottom: 1px solid #e6e6e6;
+}
+
+.offer-table-container tbody tr:hover {
+    background-color: #f9f9f9;
+}
+
+.offer-table-container td button {
+    background: none;
+    border: none;
+    color: #0358CB;
+    cursor: pointer;
+    padding: 0.25rem;
+    font-size: 1rem;
+}
+
 .actions-buttons {
     display: flex;
     gap: 0.5rem;
 }
-.icon-button {
-    background: none;
-    border: none;
-    color: #0358CB;
-    font-size: 1.2rem;
-    cursor: pointer;
+
+.actions-buttons button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #0358CB;
+    color: white;
+    border-radius: 4px;
+    padding: 0.3rem 0.5rem;
+    transition: background-color 0.2s ease;
 }
+
+.actions-buttons button:hover {
+    background-color: #0248a2;
+}
+
+.actions-buttons svg {
+    font-size: 1rem;
+}
+
+.icon-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    color: #0248a2;
+    border-radius: 4px;
+    padding: 0.3rem 0.5rem;
+    transition: background-color 0.2s ease;
+    text-decoration: none;
+}
+
 .icon-button:hover {
-    color: #024aad;
+    background-color: #0248a2;
+    color: white;
 }

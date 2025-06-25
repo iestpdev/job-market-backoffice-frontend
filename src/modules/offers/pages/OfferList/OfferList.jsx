@@ -10,8 +10,8 @@ export default function OfferListPage() {
     const { mutate: deleteOffer } = useOfferDelete();
 
     const handleDelete = (offer) => {
-        if (confirm(`¿Eliminar la oferta: ${offer.titulo}?`)) {
-            deleteOffer(offer.id);
+        if (confirm(`¿Eliminar la oferta: ${offer.TITULO}?`)) {
+            deleteOffer(offer.ID);
         }
     };
 

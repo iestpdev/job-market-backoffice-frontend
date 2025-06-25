@@ -1,13 +1,82 @@
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { create } from "../api/offers";
+import { useTiptapEditor } from "../../shared/utils/tiptap/tiptapConfig";
 
-export default function useOfferCreate(onSuccess) {
+export default function useOfferCreateForm(companyId) {
+    const navigate = useNavigate();
     const queryClient = useQueryClient();
-    return useMutation({
-        mutationFn: create,
-        onSuccess: (data) => {
-            queryClient.invalidateQueries(["offers"]);
-            if (onSuccess) onSuccess(data);
-        }
+
+    const [formData, setFormData] = useState({
+        titulo: "",
+        descripcion: "",
+        sueldo: 0,
+        adHonorem: false,
+        viaticos: 0,
+        bonos: 0,
+        numVacantes: 1,
+        fechaCierre: "",
+        requisitos: "",
+        beneficios: "",
+        contacto: "",
+        correo: "",
+        telefono: "",
     });
+
+    const descripcionEditor = useTiptapEditor(formData.descripcion);
+    const requisitosEditor = useTiptapEditor(formData.requisitos);
+    const beneficiosEditor = useTiptapEditor(formData.beneficios);
+
+    const handleChange = (e) => {
+        const { name, value, type, checked } = e.target;
+        if (name === "sueldo") {
+            const newSueldo = Number(value);
+            setFormData((prev) => ({
+                ...prev,
+                sueldo: newSueldo,
+                adHonorem: newSueldo === 0 ? prev.adHonorem : false,
+            }));
+        } else {
+            setFormData((prev) => ({
+                ...prev,
+                [name]: type === "checkbox" ? checked : value,
+            }));
+        }
+    };
+
+    const mutation = useMutation({
+        mutationFn: create,
+        onSuccess: () => {
+            queryClient.invalidateQueries(["offers"]);
+            navigate("/offers");
+        },
+        onError: (err) => {
+            console.error("Error al crear oferta:", err);
+            alert("Ocurrió un error al crear la oferta");
+        },
+    });
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        const payload = {
+            ...formData,
+            descripcion: descripcionEditor?.getHTML() || "",
+            requisitos: requisitosEditor?.getHTML() || "",
+            beneficios: beneficiosEditor?.getHTML() || "",
+            fechaPublicacion: new Date().toISOString(),
+            companyId,
+        };
+        mutation.mutate(payload);
+    };
+
+    return {
+        formData,
+        descripcionEditor,
+        requisitosEditor,
+        beneficiosEditor,
+        handleChange,
+        handleSubmit,
+        isPending: mutation.isPending,
+    };
 }

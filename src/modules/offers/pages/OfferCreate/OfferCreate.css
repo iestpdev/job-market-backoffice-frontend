@@ -1,0 +1,23 @@
+.offer-create-container {
+    max-width: 1000px;
+    margin: 2rem auto;
+    padding: 1.5rem;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+    font-family: "Segoe UI", sans-serif;
+}
+
+.offer-create-title {
+    text-align: center;
+    color: #0358cb;
+    margin-bottom: 2rem;
+    font-size: 1.8rem;
+    font-weight: 600;
+}
+
+.offer-create-loading {
+    text-align: center;
+    margin-top: 1rem;
+    color: #333;
+}

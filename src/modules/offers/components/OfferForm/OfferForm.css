@@ -1,45 +1,90 @@
 .offer-form {
-    max-width: 600px;
+    max-width: 900px;
     margin: 2rem auto;
     padding: 2rem;
-    background-color: #f9fafb;
+    background-color: #fff;
     border-radius: 12px;
-    box-shadow: 0 0 8px rgba(0, 0, 0, 0.04);
-    font-family: 'Segoe UI', sans-serif;
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.05);
+    font-family: "Segoe UI", sans-serif;
 }
-.offer-form-title {
+
+.offer-form h2 {
     text-align: center;
+    margin-bottom: 2rem;
     color: #0358CB;
-    margin-bottom: 1.5rem;
 }
+
+.form-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+}
+
 .form-group {
-    margin-bottom: 1rem;
+    flex: 1 1 45%;
     display: flex;
     flex-direction: column;
 }
-.form-group label {
-    font-weight: 500;
-    margin-bottom: 0.4rem;
+
+.form-group-full {
+    flex: 1 1 100%;
 }
+
+.form-group label {
+    margin-bottom: 0.25rem;
+    font-weight: 600;
+    color: #333;
+}
+
 .form-group input,
-.form-group select,
-.form-group textarea {
-    padding: 0.5rem 0.75rem;
+.form-group textarea,
+.form-group select {
+    padding: 0.6rem;
     border: 1px solid #ccc;
     border-radius: 6px;
-    font-size: 1rem;
+    font-size: 0.95rem;
 }
-.submit-btn {
-    margin-top: 1.5rem;
-    background-color: #0358cb;
-    color: white;
-    border: none;
-    padding: 0.7rem;
-    font-size: 1rem;
+
+.form-group select {
+    background-color: #fff;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+
+.form-checkbox {
+    display: flex;
+    align-items: left;
+    padding-top: 1.75rem;
+}
+
+.form-checkbox label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 500;
+}
+
+.tiptap-editor {
+    border: 1px solid #ccc;
     border-radius: 6px;
-    cursor: pointer;
-    width: 100%;
+    padding: 0.5rem;
+    background-color: #fafafa;
+    min-height: 150px;
 }
-.submit-btn:hover {
-    background-color: #024aad;
+
+.offer-form button[type="submit"] {
+    margin-top: 2rem;
+    padding: 0.75rem 2rem;
+    background-color: #0358CB;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.offer-form button[type="submit"]:hover {
+    background-color: #023a8c;
 }
