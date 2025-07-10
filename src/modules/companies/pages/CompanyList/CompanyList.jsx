@@ -5,9 +5,11 @@ import useCompanyDelete from "../../hooks/useCompanyDelete";
 import CompanyTable from "../../components/CompanyTable/CompanyTable";
 import useCompanyActivate from "../../hooks/useCompanyActivate";
 import useCompanyDeactivate from "../../hooks/useCompanyDeactivate";
+import usePermissions from "../../../shared/hooks/usePermissions";
 import "./CompanyList.css";
 
 export default function CompanyListPage() {
+    const { isTutor } = usePermissions();
     const { data: companies = [], isLoading } = useCompanies();
     const { mutate: deleteCompany } = useCompanyDelete();
 
@@ -27,9 +29,11 @@ export default function CompanyListPage() {
         <div className="company-list-page">
             <div className="company-list-header">
                 <h1>Gestión de empresas</h1>
+                {!isTutor && (
                 <Link to="/companies/create" className="create-button">
                     <FaPlus /> <span>Crear</span>
                 </Link>
+                )}
             </div>
 
             {isLoading ? (
