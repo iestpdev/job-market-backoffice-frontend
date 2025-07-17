@@ -1,0 +1,33 @@
+.user-edit-page {
+    padding: 2rem;
+}
+
+.user-edit-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.5rem;
+}
+
+.user-edit-header h2 {
+    font-size: 1.5rem;
+    color: var(--color-azul);
+}
+
+.back-button {
+    background: none;
+    border: none;
+    color: var(--color-azul);
+    font-size: 1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.user-edit-loading {
+    text-align: center;
+    margin-top: 3rem;
+    font-size: 1.1rem;
+    color: var(--color-gris);
+}

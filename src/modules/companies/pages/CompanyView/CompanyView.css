@@ -1,0 +1,16 @@
+.company-view-page {
+    padding: 2rem;
+}
+
+.back-button {
+    background: none;
+    border: none;
+    color: #0358cb;
+    font-size: 1rem;
+    cursor: pointer;
+    margin-bottom: 1rem;
+}
+
+.back-button:hover {
+    text-decoration: underline;
+}

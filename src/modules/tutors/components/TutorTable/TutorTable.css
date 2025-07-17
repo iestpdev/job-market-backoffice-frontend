@@ -1,0 +1,59 @@
+.tutor-table-container {
+    overflow-x: auto;
+    margin-top: 1rem;
+    background: #fff;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    font-family: "Segoe UI", sans-serif;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.tutor-table-container table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 700px;
+}
+
+.tutor-table-container thead {
+    background-color: var(--color-azul);
+    color: white;
+}
+
+.tutor-table-container th,
+.tutor-table-container td {
+    padding: 0.75rem 1rem;
+    text-align: left;
+    font-size: 0.95rem;
+    border-bottom: 1px solid #e6e6e6;
+}
+
+.tutor-table-container tbody tr:hover {
+    background-color: #f9f9f9;
+}
+
+.actions-buttons {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.icon-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    color: #0248a2;
+    border-radius: 4px;
+    padding: 0.3rem 0.5rem;
+    transition: background-color 0.2s ease;
+    font-size: 1rem;
+}
+
+.icon-button:hover {
+    background-color: #0248a2;
+    color: white;
+}
+
+
+.icon-button.danger:hover {
+    color: white;
+}

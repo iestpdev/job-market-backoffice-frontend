@@ -1,0 +1,34 @@
+.student-create-page {
+    padding: 1rem;
+    font-family: "Segoe UI", sans-serif;
+}
+
+.student-create-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+h2{
+    color: #0358CB;
+    margin-bottom: 1rem;
+}
+
+.back-button {
+    align-self: flex-start;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: none;
+    border: none;
+    color: #0358CB;
+    font-size: 1rem;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+.back-button:hover {
+    background-color: var(--color-azul-claro);
+}

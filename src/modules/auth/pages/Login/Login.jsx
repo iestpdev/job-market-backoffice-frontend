@@ -6,7 +6,7 @@ export default function LoginPage() {
     <div className="login-page">
       <div className="brand-header">
         <h1 className="brand-title">IESTP JOBS</h1>
-        <p className="brand-subtitle">Portal de Empleos y Oportunidades</p>
+        <p className="brand-subtitle">Administradores y docentes</p>
       </div>
       <LoginForm />
     </div>

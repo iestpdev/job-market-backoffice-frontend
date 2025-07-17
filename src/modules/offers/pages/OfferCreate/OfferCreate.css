@@ -1,0 +1,27 @@
+.offer-create-page {
+    padding: 2rem;
+    font-family: "Segoe UI", sans-serif;
+}
+
+.back-button {
+    background-color: #eee;
+    color: #333;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 500;
+    margin-bottom: 1rem;
+    transition: background-color 0.2s ease;
+}
+
+.back-button:hover {
+    background-color: #ddd;
+}
+
+.offer-create-loading {
+    text-align: center;
+    margin-top: 1rem;
+    font-size: 1rem;
+    color: #666;
+}
