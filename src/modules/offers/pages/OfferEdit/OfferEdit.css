@@ -1,0 +1,40 @@
+.offer-edit-container {
+    padding: 1rem;
+    font-family: "Segoe UI", sans-serif;
+    background-color: #f9fafc;
+    min-height: 100vh;
+}
+
+.offer-edit-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+}
+
+.offer-edit-title {
+    font-size: 1.8rem;
+    color: #0358CB;
+    margin-left: 1rem;
+}
+
+.back-button {
+    background-color: #ccc;
+    color: #333;
+    padding: 0.4rem 0.8rem;
+    text-decoration: none;
+    border-radius: 4px;
+    font-size: 0.95rem;
+    transition: background-color 0.2s ease;
+}
+
+.back-button:hover {
+    background-color: #bbb;
+}
+
+.offer-edit-loading {
+    margin-top: 1rem;
+    text-align: center;
+    font-size: 1rem;
+    color: #555;
+}
