@@ -1,5 +1,6 @@
 import { useMemo } from "react";
 import { Link } from "react-router-dom";
+import { AmmountCandidates } from "../../../candidacies/components/AmountCandidates/AmmountCandidates";
 import { useGenericTable } from "../../../shared/components/table/tableConfig";
 import GenericTable from "../../../shared/components/table/Table";
 import { FaEye, FaEdit, FaTrash } from "react-icons/fa";
@@ -34,6 +35,8 @@ export default function OfferTable({ offers, onDelete }) {
             header: "Acciones",
             cell: ({ row }) => (
                 <div className="actions-buttons">
+                    <AmmountCandidates offerId={row.original.ID} />
+
                     <Link to={`/offers/view/${row.original.ID}`} title="Ver más" className="icon-button">
                         <FaEye />
                     </Link>
