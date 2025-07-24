@@ -33,6 +33,9 @@ export default function Navbar() {
             </div>
 
             <div className="navbar-right">
+                <div className="mr-3 text-sm text-gray-700 font-medium hidden sm:block">
+                    {auth.user?.username}
+                </div>
                 <div
                     className="navbar-avatar-wrapper"
                     onClick={() => setDropdownOpen(!dropdownOpen)}
