@@ -58,7 +58,6 @@ const UpdateCredentialsModal = ({ tutorId, isOpen, onClose }) => {
                 onClose();
             },
             onError: (error) => {
-                console.log("erorreree: ", error)
                 setErrors([error.response.data?.message || 'Error al actualizar']);
                 setForm({
                 username: tutor.USERNAME || "",

@@ -1,5 +1,6 @@
 import { useMemo } from "react";
 import { Link } from "react-router-dom";
+import { AmmountCandidacies } from "../../../candidacies/components/AmountCandidacies/AmountCandidacies";
 import { useGenericTable } from "../../../shared/components/table/tableConfig";
 import GenericTable from "../../../shared/components/table/Table";
 import { FaEye, FaEdit, FaTrash } from "react-icons/fa";
@@ -7,7 +8,7 @@ import usePermissions from "../../../shared/hooks/usePermissions";
 import "./StudentTable.css";
 
 export default function StudentTable({ students, onView, onDelete }) {
-    const { isTutor } = usePermissions(); // detectamos el rol actual
+    const { isTutor } = usePermissions();
 
     const columns = useMemo(
         () => [
@@ -21,6 +22,8 @@ export default function StudentTable({ students, onView, onDelete }) {
                 header: "Acciones",
                 cell: ({ row }) => (
                     <div className="actions-buttons">
+                        <AmmountCandidacies studentId={row.original.ID} />
+
                         <Link
                             to={`/students/view/${row.original.ID}`}
                             title="Ver más"
@@ -48,7 +51,7 @@ export default function StudentTable({ students, onView, onDelete }) {
                 enableColumnFilter: false,
             },
         ],
-        [onView, onDelete, isTutor] // asegúrate de incluir isTutor como dependencia
+        [onView, onDelete, isTutor]
     );
 
     const table = useGenericTable({ columns, data: students });

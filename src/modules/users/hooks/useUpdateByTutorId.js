@@ -12,7 +12,6 @@ const useUpdateByTutorId = () => {
             return updateByTutorId(tutorId, user);
         },
         onSuccess: (data, variables) => {
-            console.log("Usuario actualizado correctamente:", data);
             queryClient.invalidateQueries(["user", variables.tutorId]);
         },
         onError: (error) => {

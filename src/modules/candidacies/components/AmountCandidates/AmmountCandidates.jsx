@@ -1,10 +1,11 @@
 import { useState } from "react";
 import { Users } from "lucide-react";
 import { useAmountCandidatesByOfferId } from "../../hooks/useAmountCandidatesByOfferId";
-import { CandidaciesModal } from "../candidaciesModal/CandidaciesModal";
+import { CandidatesModal } from "../candidatesModal/CandidatesModal";
 
 export const AmmountCandidates = ({ offerId }) => {
     const { data, isLoading } = useAmountCandidatesByOfferId(offerId);
+    //console.log(data)
     const [showModal, setShowModal] = useState(false);
 
     return (
@@ -23,7 +24,7 @@ export const AmmountCandidates = ({ offerId }) => {
             </button>
 
             {showModal && (
-                <CandidaciesModal offerId={offerId} onClose={() => setShowModal(false)} />
+                <CandidatesModal offerId={offerId} onClose={() => setShowModal(false)} />
             )}
         </>
     );
