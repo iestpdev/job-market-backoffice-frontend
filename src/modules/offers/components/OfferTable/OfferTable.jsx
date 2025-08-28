@@ -35,21 +35,38 @@ export default function OfferTable({ offers, onDelete }) {
             header: "Acciones",
             cell: ({ row }) => (
                 <div className="actions-buttons">
-                    <AmmountCandidates offerId={row.original.ID} />
+                    {/* Componente de candidatos */}
+                    <AmmountCandidates offerId={row.original.ID}/>
 
-                    <Link to={`/offers/view/${row.original.ID}`} title="Ver más" className="icon-button">
+                    {/* Botón de ver detalles */}
+                    <Link
+                        to={`/offers/view/${row.original.ID}`}
+                        title="Ver más"
+                        className="icon-button view"
+                    >
                         <FaEye />
                     </Link>
 
+                    {/* Botón de editar */}
                     {!isTutor && (
-                        <>
-                            <Link to={`/offers/edit/${row.original.ID}`} title="Editar" className="icon-button">
-                                <FaEdit />
-                            </Link>
-                            <button onClick={() => onDelete(row.original)} title="Eliminar" className="icon-button">
-                                <FaTrash />
-                            </button>
-                        </>
+                        <Link
+                            to={`/offers/edit/${row.original.ID}`}
+                            title="Editar"
+                            className="icon-button edit"
+                        >
+                            <FaEdit />
+                        </Link>
+                    )}
+
+                    {/* Botón de eliminar */}
+                    {!isTutor && (
+                        <button
+                            onClick={() => onDelete(row.original)}
+                            title="Eliminar"
+                            className="icon-button delete"
+                        >
+                            <FaTrash />
+                        </button>
                     )}
                 </div>
             ),

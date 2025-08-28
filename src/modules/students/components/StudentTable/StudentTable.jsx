@@ -22,29 +22,38 @@ export default function StudentTable({ students, onView, onDelete }) {
                 header: "Acciones",
                 cell: ({ row }) => (
                     <div className="actions-buttons">
+                        {/* Componente de postulaciones */}
                         <AmmountCandidacies studentId={row.original.ID} />
 
+                        {/* Botón de ver detalles */}
                         <Link
                             to={`/students/view/${row.original.ID}`}
                             title="Ver más"
-                            className="icon-button"
+                            className="icon-button view"
                         >
                             <FaEye />
                         </Link>
 
+                        {/* Botón de editar */}
                         {!isTutor && (
-                            <>
-                                <Link
-                                    to={`/students/edit/${row.original.ID}`}
-                                    title="Editar"
-                                    className="icon-button"
-                                >
-                                    <FaEdit />
-                                </Link>
-                                <button onClick={() => onDelete(row.original)} title="Eliminar">
-                                    <FaTrash />
-                                </button>
-                            </>
+                            <Link
+                                to={`/students/edit/${row.original.ID}`}
+                                title="Editar"
+                                className="icon-button edit"
+                            >
+                                <FaEdit />
+                            </Link>
+                        )}
+
+                        {/* Botón de eliminar */}
+                        {!isTutor && (
+                            <button
+                                onClick={() => onDelete(row.original)}
+                                title="Eliminar"
+                                className="icon-button delete"
+                            >
+                                <FaTrash />
+                            </button>
                         )}
                     </div>
                 ),

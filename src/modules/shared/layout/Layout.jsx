@@ -7,7 +7,7 @@ const Layout = ({ children }) => {
             <Sidebar />
             <div style={{ flex: 1, display: "flex", flexDirection: "column" }}>
                 <Navbar />
-                <main style={{ flex: 1, overflow: "auto", padding: "1rem" }}>
+                <main style={{ flex: 1, overflow: "auto", padding: "1rem" }} className="bg-gray-50">
                     {children}
                 </main>
             </div>
