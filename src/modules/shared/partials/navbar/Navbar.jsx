@@ -2,7 +2,7 @@ import { useAtomValue, useSetAtom } from "jotai";
 import { Link, useNavigate } from "react-router-dom";
 import { authAtom } from "../../../auth/atoms/authAtom";
 import usePermissions from "../../hooks/usePermissions";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./Navbar.css";
 
 export default function Navbar() {
@@ -23,6 +23,31 @@ export default function Navbar() {
         setAuth({ isAuthenticated: false, token: null, user: null });
         navigate("/login");
     };
+
+    // Función para cerrar el dropdown cuando se hace clic fuera
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+            const dropdownWrapper = document.querySelector(".navbar-avatar-wrapper");
+            const dropdownMenu = document.querySelector(".navbar-dropdown");
+
+            // Si el clic no está dentro del wrapper ni del dropdown, cierra el menú
+            if (
+                dropdownOpen &&
+                !dropdownWrapper.contains(event.target) &&
+                !dropdownMenu?.contains(event.target)
+            ) {
+                setDropdownOpen(false);
+            }
+        };
+
+        // Agregar el listener al documento
+        document.addEventListener("mousedown", handleClickOutside);
+
+        // Limpiar el listener al desmontar el componente
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
+        };
+    }, [dropdownOpen]);
 
     if (!auth.isAuthenticated) return null;
 

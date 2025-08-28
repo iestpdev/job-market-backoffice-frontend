@@ -1,3 +1,4 @@
+/* Contenedor de la tabla */
 .student-table-container {
     overflow-x: auto;
     margin-top: 1rem;
@@ -8,17 +9,20 @@
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
 }
 
+/* Estilos generales para la tabla */
 .student-table-container table {
     width: 100%;
     border-collapse: collapse;
     min-width: 700px;
 }
 
+/* Encabezado de la tabla */
 .student-table-container thead {
-    background-color: var(--color-azul);
+    background-color: var(--color-azul); /* Usa una variable CSS para el color */
     color: white;
 }
 
+/* Celdas (TH y TD) */
 .student-table-container th,
 .student-table-container td {
     padding: 0.75rem 1rem;
@@ -27,56 +31,65 @@
     border-bottom: 1px solid #e6e6e6;
 }
 
+/* Hover en las filas del cuerpo de la tabla */
 .student-table-container tbody tr:hover {
     background-color: #f9f9f9;
 }
 
-.student-table-container td button {
-    background: none;
-    border: none;
-    color: #0358CB;
-    cursor: pointer;
-    padding: 0.25rem;
-    font-size: 1rem;
-}
-
+/* Botones de acción */
 .actions-buttons {
     display: flex;
     gap: 0.5rem;
 }
 
-.actions-buttons button {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #0358CB;
-    color: white;
-    border-radius: 4px;
-    padding: 0.3rem 0.5rem;
-    transition: background-color 0.2s ease;
-}
-
-.actions-buttons button:hover {
-    background-color: #0248a2;
-}
-
-.actions-buttons svg {
-    font-size: 1rem;
-}
-
+/* Estilo base para todos los botones de ícono */
 .icon-button {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: white;
-    color: 0248a2;
-    border-radius: 4px;
-    padding: 0.3rem 0.5rem;
-    transition: background-color 0.2s ease;
-    text-decoration: none;
+    width: 2rem; /* Tamaño fijo para los botones */
+    height: 2rem; /* Tamaño fijo para los botones */
+    border-radius: 6px; /* Bordes redondeados */
+    padding: 0.25rem; /* Espaciado interno */
+    transition: background-color 0.2s ease, color 0.2s ease; /* Transición suave */
+    text-decoration: none; /* Elimina subrayado en enlaces */
+    font-size: 1rem; /* Tamaño del ícono */
 }
 
-.icon-button:hover {
-    background-color: #0248a2;
-    color: white;
+/* Botón "Ver" (color azul claro) */
+.icon-button.view {
+    background-color: #e7f3ff; /* Fondo azul claro */
+    color: #007bff; /* Color del ícono azul */
+}
+
+.icon-button.view:hover {
+    background-color: #007bff; /* Cambia a azul oscuro al pasar el mouse */
+    color: white; /* Texto blanco */
+}
+
+/* Botón "Editar" (color verde claro) */
+.icon-button.edit {
+    background-color: #e6ffed; /* Fondo verde claro */
+    color: #28a745; /* Color del ícono verde */
+}
+
+.icon-button.edit:hover {
+    background-color: #28a745; /* Cambia a verde oscuro al pasar el mouse */
+    color: white; /* Texto blanco */
+}
+
+/* Botón "Eliminar" (color rojo claro) */
+.icon-button.delete {
+    background-color: #fff3f3; /* Fondo rojo claro */
+    color: #dc3545; /* Color del ícono rojo */
+}
+
+.icon-button.delete:hover {
+    background-color: #dc3545; /* Cambia a rojo oscuro al pasar el mouse */
+    color: white; /* Texto blanco */
+}
+
+/* Íconos dentro de los botones */
+.icon-button svg {
+    font-size: 1rem; /* Asegura que los íconos tengan un tamaño consistente */
 }
