@@ -26,7 +26,7 @@ export default function UserTable({ users, onDelete }) {
                     <button
                         onClick={() => onDelete(row.original)}
                         title="Eliminar"
-                        className="icon-button"
+                        className="icon-button delete"
                     >
                         <FaTrash />
                     </button>
