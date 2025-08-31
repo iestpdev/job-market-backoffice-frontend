@@ -43,9 +43,10 @@
 .logo-image {
     max-width: 100%;
     height: auto;
-    max-height: 40px;
+    max-height: 50px;
     object-fit: contain;
     transition: opacity 0.3s ease;
+    border-radius: 10px;
 }
 
 /* Ajuste para que el logo no se muestre cuando el sidebar está cerrado */

@@ -1,22 +1,17 @@
-import { useState } from "react";
 import { Link } from "react-router-dom";
 import {
-    FaBars,
     FaHome,
     FaUser,
     FaUserGraduate,
     FaBuilding,
     FaChalkboardTeacher,
-    FaBriefcase
+    FaBriefcase,
 } from "react-icons/fa";
 import usePermissions from "../../hooks/usePermissions";
 import "./Sidebar.css";
 
-export const Sidebar = () => {
-    const [isOpen, setIsOpen] = useState(true);
+export const Sidebar = ({ isOpen }) => {
     const { isAdmin, isTutor } = usePermissions();
-
-    const toggleSidebar = () => setIsOpen(!isOpen);
 
     return (
         <div className={`sidebar ${isOpen ? "open" : "collapsed"}`}>
@@ -31,9 +26,6 @@ export const Sidebar = () => {
                         />
                     </div>
                 )}
-                <button onClick={toggleSidebar} className="toggle-button">
-                    <FaBars />
-                </button>
             </div>
 
             <nav className="sidebar-nav">
