@@ -7,8 +7,7 @@ import {
     FaUserGraduate,
     FaBuilding,
     FaChalkboardTeacher,
-    FaBriefcase,
-    FaClipboardList,
+    FaBriefcase
 } from "react-icons/fa";
 import usePermissions from "../../hooks/usePermissions";
 import "./Sidebar.css";
@@ -21,7 +20,17 @@ export const Sidebar = () => {
 
     return (
         <div className={`sidebar ${isOpen ? "open" : "collapsed"}`}>
+            {/* Logo */}
             <div className="sidebar-header">
+                {isOpen && (
+                    <div className="sidebar-logo">
+                        <img
+                            src="/LOGO_CON_TEXTO_GRANDE.jpg"
+                            alt="Logo"
+                            className="logo-image"
+                        />
+                    </div>
+                )}
                 <button onClick={toggleSidebar} className="toggle-button">
                     <FaBars />
                 </button>
@@ -76,16 +85,6 @@ export const Sidebar = () => {
                     </nav>
                 </>
             )}
-
-            {/* Futuro: para alumnos */}
-            {/* 
-            <nav className="sidebar-nav">
-                <Link to="/candidacies" className="sidebar-link">
-                <FaClipboardList className="icon" />
-                {isOpen && <span>Postulaciones</span>}
-                </Link>
-            </nav>
-            */}
         </div>
     );
 };
