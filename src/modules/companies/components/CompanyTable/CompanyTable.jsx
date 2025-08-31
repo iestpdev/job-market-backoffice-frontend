@@ -2,7 +2,7 @@ import { useMemo } from "react";
 import { Link } from "react-router-dom";
 import { useGenericTable } from "../../../shared/components/table/tableConfig";
 import GenericTable from "../../../shared/components/table/Table";
-import { FaEye, FaEdit } from "react-icons/fa";
+import { FaEye, FaEdit, FaTrash } from "react-icons/fa";
 import { getCompanyActions } from "../../utils/companyActions";
 import usePermissions from "../../../shared/hooks/usePermissions";
 import "./CompanyTable.css";
@@ -19,28 +19,36 @@ export default function CompanyTable({ companies, onActivate, onDeactivate, onDe
             header: "Acciones",
             cell: ({ row }) => (
                 <div className="actions-buttons">
-                    <Link to={`/companies/view/${row.original.ID}`} title="Ver más" className="icon-button">
+                    {/* Botón de ver detalles */}
+                    <Link
+                        to={`/companies/view/${row.original.ID}`}
+                        title="Ver más"
+                        className="icon-button view"
+                    >
                         <FaEye />
                     </Link>
 
+                    {/* Botón de editar */}
                     {!isTutor && (
-                        <>
-                            <Link to={`/companies/edit/${row.original.ID}`} title="Editar" className="icon-button">
-                                <FaEdit />
-                            </Link>
-
-                            {getCompanyActions({
-                                row,
-                                onActivate,
-                                onDeactivate,
-                                onDelete,
-                            })}
-                        </>
+                        <Link
+                            to={`/companies/edit/${row.original.ID}`}
+                            title="Editar"
+                            className="icon-button edit"
+                        >
+                            <FaEdit />
+                        </Link>
                     )}
+
+                    {/* Acciones adicionales (activar/desactivar) */}
+                    {getCompanyActions({
+                        row,
+                        onActivate,
+                        onDeactivate,
+                    })}
                 </div>
             ),
             enableColumnFilter: false,
-        }
+        },
     ], [onDelete, isTutor, onActivate, onDeactivate]);
 
     const table = useGenericTable({ columns, data: companies });

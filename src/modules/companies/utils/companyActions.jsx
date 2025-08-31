@@ -16,21 +16,27 @@ export function getCompanyActions({ row, onActivate, onDeactivate, onDelete }) {
 
     return (
         <>
+            {/* Botón de activar/desactivar */}
             <button
                 onClick={handleActivateToggle}
                 title={isActive ? "Desactivar empresa" : "Activar empresa"}
-                className="icon-button"
+                className={`flex items-center justify-center w-8 h-8 rounded-lg transition-all duration-200 ${
+                    isActive
+                        ? "bg-yellow-100 text-yellow-600 hover:bg-yellow-600 hover:text-white"
+                        : "bg-green-100 text-green-600 hover:bg-green-600 hover:text-white"
+                }`}
             >
-                {isActive ? <FaArrowDown /> : <FaArrowUp />}
+                {isActive ? <FaArrowDown size={16} /> : <FaArrowUp size={16} />}
             </button>
 
+            {/* Botón de eliminar (solo visible si la empresa está inactiva) */}
             {!isActive && (
                 <button
                     onClick={() => onDelete(company)}
                     title="Eliminar"
-                    className="icon-button"
+                    className="flex items-center justify-center w-8 h-8 bg-red-100 text-red-600 rounded-lg hover:bg-red-600 hover:text-white transition-all duration-200"
                 >
-                    <FaTrash />
+                    <FaTrash size={16} />
                 </button>
             )}
         </>
