@@ -2,7 +2,7 @@ import { useMemo } from "react";
 import { Link } from "react-router-dom";
 import { useGenericTable } from "../../../shared/components/table/tableConfig";
 import GenericTable from "../../../shared/components/table/Table";
-import { FaEye, FaEdit, FaTrash } from "react-icons/fa";
+import { FaEye, FaEdit } from "react-icons/fa";
 import { getCompanyActions } from "../../utils/companyActions";
 import usePermissions from "../../../shared/hooks/usePermissions";
 import "./CompanyTable.css";
@@ -40,11 +40,14 @@ export default function CompanyTable({ companies, onActivate, onDeactivate, onDe
                     )}
 
                     {/* Acciones adicionales (activar/desactivar) */}
-                    {getCompanyActions({
+                    {!isTutor &&
+                    getCompanyActions({
                         row,
                         onActivate,
                         onDeactivate,
-                    })}
+                    })
+                    }
+                    
                 </div>
             ),
             enableColumnFilter: false,
