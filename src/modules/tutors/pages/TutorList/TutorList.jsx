@@ -1,12 +1,10 @@
-import { useNavigate } from "react-router-dom";
-import { FaArrowLeft, FaPlus } from "react-icons/fa";
+import { Link } from "react-router-dom";
+import { FaPlus } from "react-icons/fa";
 import useTutors from "../../hooks/useTutors";
 import useTutorDelete from "../../hooks/useTutorDelete";
 import TutorTable from "../../components/TutorTable/TutorTable";
-import "./TutorList.css";
 
 export default function TutorListPage() {
-    const navigate = useNavigate();
     const { data: tutors = [], isLoading } = useTutors();
     const { mutate: deleteTutor } = useTutorDelete();
 
@@ -17,19 +15,27 @@ export default function TutorListPage() {
     };
 
     return (
-        <div className="tutor-list-page">
-            <div className="tutor-list-header">
-                <h2>Gestión de Docentes</h2>
-
-                <button className="create-button" onClick={() => navigate("/tutors/create")}>
-                    <FaPlus /> Crear
-                </button>
+        <div className="p-6 min-h-screen font-sans">
+            {/* Header Section */}
+            <div className="flex justify-between items-center mb-6">
+                <h1 className="text-3xl font-bold text-blue-700">Gestión de Docentes</h1>
+                <div className="flex gap-4">
+                    <Link
+                        to="/tutors/create"
+                        className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg shadow-md flex items-center gap-2 transition-all duration-300"
+                    >
+                        <FaPlus size={16} /> <span>Crear nuevo docente</span>
+                    </Link>
+                </div>
             </div>
 
+            {/* Loading or Table Section */}
             {isLoading ? (
-                <p className="tutor-loading">Cargando tutores...</p>
+                <div className="flex justify-center items-center h-64">
+                    <p className="text-lg text-gray-500 animate-pulse">Cargando docentes...</p>
+                </div>
             ) : (
-                <TutorTable tutors={tutors} onDelete={handleDelete} />
+                    <TutorTable tutors={tutors} onDelete={handleDelete} />
             )}
         </div>
     );
