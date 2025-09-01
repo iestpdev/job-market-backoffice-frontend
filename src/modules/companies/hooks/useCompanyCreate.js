@@ -1,20 +1,11 @@
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { createWithFormData } from "../api/companies";
-import { showSuccess, showError } from "../../shared/components/toast/toast";
+import { useMutation } from "@tanstack/react-query";
+import { registerCompany } from "../../auth/api/auth-register";
 
 export default function useCompanyCreate(onSuccess) {
-    const queryClient = useQueryClient();
-
     return useMutation({
-        mutationFn: async (formData) => await createWithFormData(formData),
-        onSuccess: () => {
-            showSuccess("Empresa registrada correctamente");
-            queryClient.invalidateQueries(["companies"]);
-            if (onSuccess) onSuccess();
+        mutationFn: registerCompany,
+        onSuccess: (data) => {
+            if (onSuccess) onSuccess(data);
         },
-        onError: (error) => {
-            console.error(error);
-            showError("Error al registrar la empresa");
-        }
     });
 }

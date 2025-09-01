@@ -6,7 +6,7 @@ import "./CompanyCreate.css";
 
 export default function CompanyCreatePage() {
     const navigate = useNavigate();
-    const { mutate } = useCompanyCreate(() => navigate("/companies"));
+    const { mutate, isPending } = useCompanyCreate(() => navigate("/companies"));
 
     return (
         <div className="company-create-page">
@@ -15,7 +15,7 @@ export default function CompanyCreatePage() {
                     <FaArrowLeft /> Volver
                 </button>
             </div>
-            <CompanyForm onSubmit={mutate} />
+            <CompanyForm onSubmit={mutate} loading={isPending} />
         </div>
     );
 }
