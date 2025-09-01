@@ -1,14 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Eye, EyeOff } from 'lucide-react';
-import useUpdateByTutorId from '../hooks/useUpdateByTutorId';
-import useGetByTutorId from '../hooks/useGetByTutorId';
+import useUpdateCredentialsByStudentId from '../hooks/useUpdateCredentialsByStudentId';
+import useGetByStudentId from '../hooks/useGetByStudentId';
 import { useQueryClient } from '@tanstack/react-query';
 
-const UpdateCredentialsModal = ({ tutorId, isOpen, onClose }) => {
-    const { mutate } = useUpdateByTutorId();
+const UpdateCredentialsStudentModal = ({ studentId, isOpen, onClose }) => {
+    const { mutate } = useUpdateCredentialsByStudentId();
     const queryClient = useQueryClient();
 
-    const { data: tutor, isLoading } = useGetByTutorId(tutorId);
+    const { data: student, isLoading } = useGetByStudentId(studentId);
 
     const [form, setForm] = useState({
         username: "",
@@ -19,14 +19,14 @@ const UpdateCredentialsModal = ({ tutorId, isOpen, onClose }) => {
     const [errors, setErrors] = useState([]);
 
     useEffect(() => {
-        if (tutor) {
+        if (student) {
             setForm({
-                username: tutor.USERNAME || "",
+                username: student.USERNAME || "",
                 newPassword: "",
             });
             setErrors([]);
         }
-    }, [tutor]);
+    }, [student]);
 
     const handleChange = (e) => {
         setForm(prev => ({ ...prev, [e.target.name]: e.target.value }));
@@ -36,7 +36,7 @@ const UpdateCredentialsModal = ({ tutorId, isOpen, onClose }) => {
         e.preventDefault();
         setErrors([]);
 
-        if (!tutorId) return;
+        if (!studentId) return;
 
         const payload = {
             username: form.username,
@@ -44,10 +44,10 @@ const UpdateCredentialsModal = ({ tutorId, isOpen, onClose }) => {
         };
 
         mutate(
-            { tutorId, user: payload },
+            { studentId, user: payload },
             {
                 onSuccess: () => {
-                    queryClient.invalidateQueries(['user', tutorId]);
+                    queryClient.invalidateQueries(['student', studentId]);
                     onClose();
                 },
                 onError: (error) => {
@@ -60,7 +60,7 @@ const UpdateCredentialsModal = ({ tutorId, isOpen, onClose }) => {
         );
     };
 
-    if (!isOpen || isLoading || !tutorId) return null;
+    if (!isOpen || isLoading || !studentId) return null;
 
     return (
         <>
@@ -143,4 +143,4 @@ const UpdateCredentialsModal = ({ tutorId, isOpen, onClose }) => {
     );
 };
 
-export default UpdateCredentialsModal;
+export default UpdateCredentialsStudentModal;

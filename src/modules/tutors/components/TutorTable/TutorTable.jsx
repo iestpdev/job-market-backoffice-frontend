@@ -2,7 +2,7 @@ import { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import { useGenericTable } from "../../../shared/components/table/tableConfig";
 import GenericTable from "../../../shared/components/table/Table";
-import UpdateCredentialsModal from "../../../users/components/UpdateCredentialsModal";
+import UpdateCredentialsTutorModal from "../../../users/components/UpdateCredentialsTutorModal";
 import { FaEdit, FaTrash } from "react-icons/fa";
 import { KeyRound } from "lucide-react";
 import "./TutorTable.css";
@@ -45,8 +45,8 @@ export default function TutorTable({ tutors, onDelete }) {
                         title="Credenciales"
                         className="icon-button key"
                         onClick={() => {
-                            setSelectedTutorId(row.original.ID); // Aquí se asegura que el tutorId esté correcto
-                            setIsModalOpen(true); // Abre el modal
+                            setSelectedTutorId(row.original.ID); 
+                            setIsModalOpen(true); 
                         }}
                     >
                         <KeyRound size={16} />
@@ -72,7 +72,7 @@ export default function TutorTable({ tutors, onDelete }) {
             <GenericTable table={table} />
 
             {/* Modal de credenciales */}
-            <UpdateCredentialsModal
+            <UpdateCredentialsTutorModal
                 tutorId={selectedTutorId} // Este debe ser el tutorId del tutor seleccionado
                 isOpen={isModalOpen}
                 onClose={() => setIsModalOpen(false)}

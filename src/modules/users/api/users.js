@@ -20,12 +20,22 @@ export const deleteById = async (id) => {
     return data;
 }
 
-export const updateByTutorId = async (tutorId, user) => {
-    const { data } = await axios.patch(`/user/update-by-tutor/${tutorId}`, user);
+export const updateCredentialsByTutorId = async (tutorId, user) => {
+    const { data } = await axios.patch(`/user/update-credentials-by-tutor/${tutorId}`, user);
+    return data;
+}
+
+export const updateCredentialsByStudentId = async (studentId, user) => {
+    const { data } = await axios.patch(`/user/update-credentials-by-student/${studentId}`, user);
     return data;
 }
 
 export const getByTutorId = async (tutorId, user) => {
     const { data } = await axios.get(`/user/by-tutor/${tutorId}`, user);
+    return data;
+}
+
+export const getByStudentId = async (studentId, user) => {
+    const { data } = await axios.get(`/user/by-student/${studentId}`, user);
     return data;
 }

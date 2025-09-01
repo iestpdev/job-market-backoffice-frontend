@@ -1,14 +1,18 @@
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import { AmmountCandidacies } from "../../../candidacies/components/AmountCandidacies/AmountCandidacies";
 import { useGenericTable } from "../../../shared/components/table/tableConfig";
 import GenericTable from "../../../shared/components/table/Table";
+import UpdateCredentialsStudentModal from "../../../users/components/UpdateCredentialsStudentModal";
 import { FaEye, FaEdit, FaTrash } from "react-icons/fa";
+import { KeyRound } from "lucide-react";
 import usePermissions from "../../../shared/hooks/usePermissions";
 import "./StudentTable.css";
 
 export default function StudentTable({ students, onView, onDelete }) {
     const { isTutor } = usePermissions();
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [selectedtudentId, setSelectedStudentId] = useState(null);
 
     const columns = useMemo(
         () => [
@@ -45,6 +49,20 @@ export default function StudentTable({ students, onView, onDelete }) {
                             </Link>
                         )}
 
+                        {/* Botón de credenciales */}
+                        {!isTutor && (
+                            <button
+                                title="Credenciales"
+                                className="icon-button key"
+                                onClick={() => {
+                                    setSelectedStudentId(row.original.ID);
+                                    setIsModalOpen(true);
+                                }}
+                            >
+                                <KeyRound size={16} />
+                            </button>
+                        )}
+
                         {/* Botón de eliminar */}
                         {!isTutor && (
                             <button
@@ -68,6 +86,13 @@ export default function StudentTable({ students, onView, onDelete }) {
     return (
         <div className="student-table-container">
             <GenericTable table={table} />
+
+            {/* Modal de credenciales */}
+            <UpdateCredentialsStudentModal
+                studentId={selectedtudentId} // Este debe ser el studentId del alumno seleccionado
+                isOpen={isModalOpen}
+                onClose={() => setIsModalOpen(false)}
+            />
         </div>
     );
 }
