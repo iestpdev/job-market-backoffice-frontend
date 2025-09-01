@@ -1,13 +1,18 @@
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import { useGenericTable } from "../../../shared/components/table/tableConfig";
 import GenericTable from "../../../shared/components/table/Table";
+import UpdateCredentialsCompanyModal from "../../../users/components/UpdateCredentialsCompanyModal";
 import { FaEye, FaEdit } from "react-icons/fa";
+import { KeyRound } from "lucide-react";
 import { getCompanyActions } from "../../utils/companyActions";
 import usePermissions from "../../../shared/hooks/usePermissions";
 import "./CompanyTable.css";
 
 export default function CompanyTable({ companies, onActivate, onDeactivate, onDelete }) {
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [selectedCompanyId, setSelectedCompanyId] = useState(null);
+
     const { isTutor } = usePermissions();
 
     const columns = useMemo(() => [
@@ -39,16 +44,31 @@ export default function CompanyTable({ companies, onActivate, onDeactivate, onDe
                         </Link>
                     )}
 
+                    {/* Botón de credenciales */}
+                    {!isTutor && (
+                        < button
+                            title="Credenciales"
+                            className="icon-button key"
+                            onClick={() => {
+                                setSelectedCompanyId(row.original.ID);
+                                setIsModalOpen(true);
+                            }}
+                        >
+                            <KeyRound size={16} />
+                        </button>
+                    )
+                    }
+
                     {/* Acciones adicionales (activar/desactivar) */}
                     {!isTutor &&
-                    getCompanyActions({
-                        row,
-                        onActivate,
-                        onDeactivate,
-                    })
+                        getCompanyActions({
+                            row,
+                            onActivate,
+                            onDeactivate,
+                        })
                     }
-                    
-                </div>
+
+                </div >
             ),
             enableColumnFilter: false,
         },
@@ -59,6 +79,13 @@ export default function CompanyTable({ companies, onActivate, onDeactivate, onDe
     return (
         <div className="company-table-container">
             <GenericTable table={table} />
+
+            {/* Modal de credenciales */}
+            <UpdateCredentialsCompanyModal
+                companyId={selectedCompanyId} // Este debe ser el tutorId del tutor seleccionado
+                isOpen={isModalOpen}
+                onClose={() => setIsModalOpen(false)}
+            />
         </div>
     );
 }
