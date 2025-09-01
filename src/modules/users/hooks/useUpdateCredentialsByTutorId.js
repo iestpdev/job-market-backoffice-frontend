@@ -1,7 +1,7 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { updateByTutorId } from "../api/users";
+import { updateCredentialsByTutorId } from "../api/users";
 
-const useUpdateByTutorId = () => {
+const useUpdateCredentialsByTutorId = () => {
     const queryClient = useQueryClient();
 
     return useMutation({
@@ -9,7 +9,7 @@ const useUpdateByTutorId = () => {
             if (!tutorId) {
                 throw new Error("El tutorId no está definido");
             }
-            return updateByTutorId(tutorId, user);
+            return updateCredentialsByTutorId(tutorId, user);
         },
         onSuccess: (data, variables) => {
             queryClient.invalidateQueries(["user", variables.tutorId]);
@@ -25,4 +25,4 @@ const useUpdateByTutorId = () => {
     });
 };
 
-export default useUpdateByTutorId;
+export default useUpdateCredentialsByTutorId;

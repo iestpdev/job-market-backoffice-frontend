@@ -4,7 +4,6 @@ import useTutorDetails from "../../hooks/useTutorDetails";
 import useTutorUpdate from "../../hooks/useTutorUpdate";
 import TutorForm from "../../components/TutorForm/TutorForm";
 import usePermissions from "../../../shared/hooks/usePermissions";
-import "./TutorEdit.css";
 
 export default function TutorEditPage() {
     const { id } = useParams();
@@ -14,7 +13,7 @@ export default function TutorEditPage() {
     const [formData, setFormData] = useState(null);
 
     const { mutate, isPending } = useTutorUpdate(id, () => {
-        navigate(isTutor ? "/" : "/tutors"); 
+        navigate(isTutor ? "/" : "/tutors");
     });
 
     useEffect(() => {
@@ -40,16 +39,30 @@ export default function TutorEditPage() {
         mutate(formData);
     };
 
-    if (isLoading || !formData) return <p className="tutor-edit-loading">Cargando datos...</p>;
+    if (isLoading || !formData) {
+        return (
+            <div className="flex justify-center items-center min-h-screen">
+                <p className="text-lg text-gray-500 animate-pulse">Cargando datos...</p>
+            </div>
+        );
+    }
 
     return (
-        <>
-            <div className="tutor-edit-header">
+        <div className="max-w-[900px] mx-auto p-8 bg-white rounded-lg shadow-md">
+            {/* Header Section */}
+            <div className="flex justify-between items-center mb-6">
                 {!isTutor && (
-                    <Link to="/tutors" className="back-button">← Volver</Link>
+                    <Link
+                        to="/tutors"
+                        className="flex items-center gap-2 px-4 py-2 bg-white border-2 border-blue-600 text-blue-600 font-semibold rounded-lg hover:bg-blue-600 hover:text-white transition-all duration-300"
+                    >
+                        ← Volver
+                    </Link>
                 )}
+                <h1 className="text-2xl font-bold text-blue-600">Editar Docente</h1>
             </div>
 
+            {/* Form Section */}
             <TutorForm
                 formData={formData}
                 onChange={handleChange}
@@ -57,6 +70,6 @@ export default function TutorEditPage() {
                 isEdit
                 loading={isPending}
             />
-        </>
+        </div>
     );
 }

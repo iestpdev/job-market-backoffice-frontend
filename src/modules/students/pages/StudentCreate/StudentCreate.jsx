@@ -16,6 +16,7 @@ export default function StudentCreatePage() {
                 </button>
                 <h2>Registrar alumno</h2>
             </div>
+            {/* El StudentForm ahora enviará JSON compatible con registerStudent */}
             <StudentForm onSubmit={mutate} loading={isPending} />
         </div>
     );
