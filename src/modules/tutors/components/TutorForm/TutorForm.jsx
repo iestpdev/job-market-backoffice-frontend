@@ -3,10 +3,6 @@ import "./TutorForm.css";
 export default function TutorForm({ formData, onChange, onSubmit, isEdit = false, loading = false }) {
     return (
         <form className="tutor-form" onSubmit={onSubmit}>
-            <h2 className="tutor-form-title">
-                {isEdit ? "Editar Tutor" : "Registrar Tutor"}
-            </h2>
-
             <div className="form-grid">
                 <div className="form-group">
                     <label>Apellidos:</label>
@@ -62,7 +58,7 @@ export default function TutorForm({ formData, onChange, onSubmit, isEdit = false
             </div>
 
             <button type="submit" disabled={loading}>
-                {loading ? "Registrando..." : isEdit ? "Guardar Cambios" : "Registrar Tutor"}
+                {loading ? "Registrando..." : isEdit ? "Actualizar" : "Registrar"}
             </button>
         </form>
     );

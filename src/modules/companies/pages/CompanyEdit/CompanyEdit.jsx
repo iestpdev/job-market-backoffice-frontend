@@ -15,7 +15,7 @@ export default function CompanyEditPage() {
 
     return (
         <>
-            <CompanyForm company={company} onSubmit={mutate} />
+            <CompanyForm company={company} isEdit onSubmit={mutate} />
             {isPending && <p className="company-edit-updating">Actualizando datos...</p>}
         </>
     );

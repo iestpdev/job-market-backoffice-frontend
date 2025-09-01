@@ -84,3 +84,18 @@
 .dropdown-item:hover {
     background-color: var(--color-fondo-hover);
 }
+
+.navbar-toggle-button {
+    background: none;
+    border: none;
+    color: var(--color-negro);
+    font-size: 1.5rem;
+    cursor: pointer;
+    margin-right: 1rem;
+    display: flex;
+    align-items: center;
+}
+
+.navbar-toggle-button:hover {
+    color: var(--color-azul);
+}

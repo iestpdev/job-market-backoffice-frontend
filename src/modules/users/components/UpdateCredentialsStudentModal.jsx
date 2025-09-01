@@ -1,74 +1,66 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Eye, EyeOff } from 'lucide-react';
-import useUpdateByTutorId from '../hooks/useUpdateByTutorId';
-import useGetByTutorId from '../hooks/useGetByTutorId';
+import useUpdateCredentialsByStudentId from '../hooks/useUpdateCredentialsByStudentId';
+import useGetByStudentId from '../hooks/useGetByStudentId';
 import { useQueryClient } from '@tanstack/react-query';
 
-const UpdateCredentialsModal = ({ tutorId, isOpen, onClose }) => {
-    const { mutate } = useUpdateByTutorId();
+const UpdateCredentialsStudentModal = ({ studentId, isOpen, onClose }) => {
+    const { mutate } = useUpdateCredentialsByStudentId();
     const queryClient = useQueryClient();
 
-    const { data: tutor, error, isLoading } = useGetByTutorId(tutorId);
+    const { data: student, isLoading } = useGetByStudentId(studentId);
 
     const [form, setForm] = useState({
         username: "",
-        currentPassword: "",
         newPassword: "",
     });
 
-    const [showCurrent, setShowCurrent] = useState(false);
     const [showNew, setShowNew] = useState(false);
     const [errors, setErrors] = useState([]);
 
     useEffect(() => {
-        if (tutor) {
+        if (student) {
             setForm({
-                username: tutor.USERNAME || "",
-                currentPassword: "",
+                username: student.USERNAME || "",
                 newPassword: "",
             });
+            setErrors([]);
         }
-    }, [tutor]);
+    }, [student]);
 
     const handleChange = (e) => {
-        setForm({ ...form, [e.target.name]: e.target.value });
+        setForm(prev => ({ ...prev, [e.target.name]: e.target.value }));
     };
-
-    const isPasswordRequired = form.currentPassword.trim() !== "";
 
     const handleSubmit = (e) => {
         e.preventDefault();
         setErrors([]);
 
-        const payload = { username: form.username };
+        if (!studentId) return;
 
-        if (form.currentPassword && form.newPassword) {
-            payload.currentPassword = form.currentPassword;
-            payload.newPassword = form.newPassword;
-        }
+        const payload = {
+            username: form.username,
+            newPassword: form.newPassword,
+        };
 
-        if (!tutorId) {
-            console.error("tutorId no está definido");
-            return;
-        }
-
-        mutate({ tutorId, user: payload }, {
-            onSuccess: () => {
-                queryClient.invalidateQueries(['user', tutorId]);
-                onClose();
-            },
-            onError: (error) => {
-                setErrors([error.response.data?.message || 'Error al actualizar']);
-                setForm({
-                username: tutor.USERNAME || "",
-                currentPassword: "",
-                newPassword: "",
-            });
+        mutate(
+            { studentId, user: payload },
+            {
+                onSuccess: () => {
+                    queryClient.invalidateQueries(['student', studentId]);
+                    onClose();
+                },
+                onError: (error) => {
+                    const serverMsg = error?.response?.data?.message || error?.message || 'Error al actualizar';
+                    setErrors([serverMsg]);
+                    // reset solo la contraseña
+                    setForm(prev => ({ ...prev, newPassword: "" }));
+                }
             }
-        });
+        );
     };
 
-    if (!isOpen || isLoading || !tutorId) return null;
+    if (!isOpen || isLoading || !studentId) return null;
 
     return (
         <>
@@ -90,28 +82,6 @@ const UpdateCredentialsModal = ({ tutorId, isOpen, onClose }) => {
                             />
                         </div>
 
-                        {/* Contraseña actual */}
-                        <div>
-                            <label className="block font-medium mb-1">Contraseña actual</label>
-                            <div className="relative">
-                                <input
-                                    type={showCurrent ? "text" : "password"}
-                                    name="currentPassword"
-                                    value={form.currentPassword}
-                                    onChange={handleChange}
-                                    className="w-full border rounded px-3 py-2 pr-10 focus:outline-none focus:ring focus:border-blue-300"
-                                    required={isPasswordRequired}
-                                />
-                                <button
-                                    type="button"
-                                    onClick={() => setShowCurrent(!showCurrent)}
-                                    className="absolute right-2 top-2.5 text-gray-500 hover:text-gray-700"
-                                >
-                                    {showCurrent ? <EyeOff size={20} /> : <Eye size={20} />}
-                                </button>
-                            </div>
-                        </div>
-
                         {/* Nueva contraseña */}
                         <div>
                             <label className="block font-medium mb-1">Nueva contraseña</label>
@@ -122,7 +92,7 @@ const UpdateCredentialsModal = ({ tutorId, isOpen, onClose }) => {
                                     value={form.newPassword}
                                     onChange={handleChange}
                                     className="w-full border rounded px-3 py-2 pr-10 focus:outline-none focus:ring focus:border-blue-300"
-                                    required={isPasswordRequired}
+                                    required
                                 />
                                 <button
                                     type="button"
@@ -163,16 +133,14 @@ const UpdateCredentialsModal = ({ tutorId, isOpen, onClose }) => {
                 </div>
             </div>
 
-            {/* Mostrar errores */}
+            {/* Errores del servidor */}
             {errors.length > 0 && (
                 <div className="absolute bottom-0 left-0 w-full bg-red-500 text-white p-4">
-                    {errors.map((error, index) => (
-                        <p key={index}>{error}</p>
-                    ))}
+                    {errors.map((error, idx) => <p key={idx}>{error}</p>)}
                 </div>
             )}
         </>
     );
 };
 
-export default UpdateCredentialsModal;
+export default UpdateCredentialsStudentModal;

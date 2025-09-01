@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import { FaArrowLeft } from "react-icons/fa";
 import TutorForm from "../../components/TutorForm/TutorForm";
 import { registerTutor } from "../../../auth/api/auth-register";
-import "./TutorCreate.css";
 
 export default function TutorCreatePage() {
     const navigate = useNavigate();
@@ -40,14 +39,19 @@ export default function TutorCreatePage() {
     };
 
     return (
-        <div className="tutor-create-page">
-            <div className="tutor-create-header">
-                <button className="back-button" onClick={() => navigate("/tutors")}>
-                    <FaArrowLeft /> Volver
+        <div className="max-w-[900px] mx-auto p-8 bg-white rounded-lg shadow-md">
+            {/* Header Section */}
+            <div className="flex justify-between items-center mb-6">
+                <button
+                    onClick={() => navigate("/tutors")}
+                    className="flex items-center gap-2 px-4 py-2 bg-white border-2 border-blue-600 text-blue-600 font-semibold rounded-lg hover:bg-blue-600 hover:text-white transition-all duration-300"
+                >
+                    <FaArrowLeft size={16} /> Volver
                 </button>
-                <h2>Registrar Tutor</h2>
+                <h1 className="text-2xl font-bold text-blue-600">Registrar Tutor</h1>
             </div>
 
+            {/* Form Section */}
             <TutorForm
                 formData={formData}
                 onChange={handleChange}

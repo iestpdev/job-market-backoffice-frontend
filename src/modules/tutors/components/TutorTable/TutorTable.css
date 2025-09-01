@@ -1,3 +1,4 @@
+/* Contenedor de la tabla */
 .tutor-table-container {
     overflow-x: auto;
     margin-top: 1rem;
@@ -8,17 +9,20 @@
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
 }
 
+/* Estilos generales para la tabla */
 .tutor-table-container table {
     width: 100%;
     border-collapse: collapse;
     min-width: 700px;
 }
 
+/* Encabezado de la tabla */
 .tutor-table-container thead {
-    background-color: var(--color-azul);
+    background-color: var(--color-azul); /* Usa una variable CSS para el color */
     color: white;
 }
 
+/* Celdas (TH y TD) */
 .tutor-table-container th,
 .tutor-table-container td {
     padding: 0.75rem 1rem;
@@ -27,33 +31,68 @@
     border-bottom: 1px solid #e6e6e6;
 }
 
+/* Hover en las filas del cuerpo de la tabla */
 .tutor-table-container tbody tr:hover {
     background-color: #f9f9f9;
 }
 
+/* Botones de acción */
 .actions-buttons {
     display: flex;
     gap: 0.5rem;
 }
 
+/* Estilo base para todos los botones de ícono */
 .icon-button {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: white;
-    color: #0248a2;
-    border-radius: 4px;
-    padding: 0.3rem 0.5rem;
-    transition: background-color 0.2s ease;
-    font-size: 1rem;
+    width: 2rem; /* Tamaño fijo para los botones */
+    height: 2rem; /* Tamaño fijo para los botones */
+    border-radius: 6px; /* Bordes redondeados */
+    padding: 0.25rem; /* Espaciado interno */
+    transition: background-color 0.2s ease, color 0.2s ease; /* Transición suave */
+    text-decoration: none; /* Elimina subrayado en enlaces */
+    font-size: 1rem; /* Tamaño del ícono */
 }
 
-.icon-button:hover {
-    background-color: #0248a2;
-    color: white;
+/* Botón "Editar" (color verde claro) */
+.icon-button.edit {
+    background-color: #e6ffed; /* Fondo verde claro */
+    border: 2px solid #28a745;
+    color: #28a745; /* Color del ícono verde */
 }
 
+.icon-button.edit:hover {
+    background-color: #28a745; /* Cambia a verde oscuro al pasar el mouse */
+    color: white; /* Texto blanco */
+}
 
-.icon-button.danger:hover {
-    color: white;
+/* Botón "Credenciales" (color amarillo claro) */
+.icon-button.key {
+    background-color: #fff8e1; /* Fondo amarillo claro */
+    border: 2px solid #ffc107;
+    color: #ffc107; /* Color del ícono amarillo */
+}
+
+.icon-button.key:hover {
+    background-color: #ffc107; /* Cambia a amarillo oscuro al pasar el mouse */
+    color: white; /* Texto blanco */
+}
+
+/* Botón "Eliminar" (color rojo claro) */
+.icon-button.delete {
+    background-color: #fff3f3; /* Fondo rojo claro */
+    border: 2px solid #dc3545;
+    color: #dc3545; /* Color del ícono rojo */
+}
+
+.icon-button.delete:hover {
+    background-color: #dc3545; /* Cambia a rojo oscuro al pasar el mouse */
+    color: white; /* Texto blanco */
+}
+
+/* Íconos dentro de los botones */
+.icon-button svg {
+    font-size: 1rem; /* Asegura que los íconos tengan un tamaño consistente */
 }

@@ -1,22 +1,18 @@
-import { useAtomValue, useSetAtom } from "jotai";
+import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { FaBars } from "react-icons/fa";
+import { useAtomValue, useSetAtom } from "jotai";
 import { authAtom } from "../../../auth/atoms/authAtom";
 import usePermissions from "../../hooks/usePermissions";
-import { useEffect, useState } from "react";
 import "./Navbar.css";
 
-export default function Navbar() {
+export default function Navbar({ toggleSidebar }) {
     const auth = useAtomValue(authAtom);
     const setAuth = useSetAtom(authAtom);
     const navigate = useNavigate();
     const [dropdownOpen, setDropdownOpen] = useState(false);
 
-    const {
-        isAdmin,
-        adminId,
-        isTutor,
-        tutorId,
-    } = usePermissions();
+    const { isAdmin, adminId, isTutor, tutorId } = usePermissions();
 
     const handleLogout = () => {
         localStorage.removeItem("auth");
@@ -30,7 +26,6 @@ export default function Navbar() {
             const dropdownWrapper = document.querySelector(".navbar-avatar-wrapper");
             const dropdownMenu = document.querySelector(".navbar-dropdown");
 
-            // Si el clic no está dentro del wrapper ni del dropdown, cierra el menú
             if (
                 dropdownOpen &&
                 !dropdownWrapper.contains(event.target) &&
@@ -40,10 +35,8 @@ export default function Navbar() {
             }
         };
 
-        // Agregar el listener al documento
         document.addEventListener("mousedown", handleClickOutside);
 
-        // Limpiar el listener al desmontar el componente
         return () => {
             document.removeEventListener("mousedown", handleClickOutside);
         };
@@ -54,7 +47,13 @@ export default function Navbar() {
     return (
         <nav className="navbar">
             <div className="navbar-left">
-                <Link to="/" className="navbar-logo">IESTP JOBS</Link>
+                {/* Botón para colapsar/expandir el sidebar */}
+                <button onClick={toggleSidebar} className="navbar-toggle-button">
+                    <FaBars size={24} />
+                </button>
+                <Link to="/" className="navbar-logo">
+                    IESTP JOBS
+                </Link>
             </div>
 
             <div className="navbar-right">
@@ -73,12 +72,18 @@ export default function Navbar() {
                     {dropdownOpen && (
                         <div className="navbar-dropdown">
                             {isAdmin && adminId && (
-                                <Link to={`/user/edit/${adminId}`} className="dropdown-item">Mi Perfil</Link>
+                                <Link to={`/user/edit/${adminId}`} className="dropdown-item">
+                                    Mi Perfil
+                                </Link>
                             )}
                             {isTutor && tutorId && (
-                                <Link to={`/tutors/edit/${tutorId}`} className="dropdown-item">Mi Perfil</Link>
+                                <Link to={`/tutors/edit/${tutorId}`} className="dropdown-item">
+                                    Mi Perfil
+                                </Link>
                             )}
-                            <button onClick={handleLogout} className="dropdown-item">Cerrar sesión</button>
+                            <button onClick={handleLogout} className="dropdown-item">
+                                Cerrar sesión
+                            </button>
                         </div>
                     )}
                 </div>

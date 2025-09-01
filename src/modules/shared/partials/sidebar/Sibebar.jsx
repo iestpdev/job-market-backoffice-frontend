@@ -1,30 +1,31 @@
-import { useState } from "react";
 import { Link } from "react-router-dom";
 import {
-    FaBars,
     FaHome,
     FaUser,
     FaUserGraduate,
     FaBuilding,
     FaChalkboardTeacher,
     FaBriefcase,
-    FaClipboardList,
 } from "react-icons/fa";
 import usePermissions from "../../hooks/usePermissions";
 import "./Sidebar.css";
 
-export const Sidebar = () => {
-    const [isOpen, setIsOpen] = useState(true);
+export const Sidebar = ({ isOpen }) => {
     const { isAdmin, isTutor } = usePermissions();
-
-    const toggleSidebar = () => setIsOpen(!isOpen);
 
     return (
         <div className={`sidebar ${isOpen ? "open" : "collapsed"}`}>
+            {/* Logo */}
             <div className="sidebar-header">
-                <button onClick={toggleSidebar} className="toggle-button">
-                    <FaBars />
-                </button>
+                {isOpen && (
+                    <div className="sidebar-logo">
+                        <img
+                            src="/LOGO_CON_TEXTO_GRANDE.jpg"
+                            alt="Logo"
+                            className="logo-image"
+                        />
+                    </div>
+                )}
             </div>
 
             <nav className="sidebar-nav">
@@ -76,16 +77,6 @@ export const Sidebar = () => {
                     </nav>
                 </>
             )}
-
-            {/* Futuro: para alumnos */}
-            {/* 
-            <nav className="sidebar-nav">
-                <Link to="/candidacies" className="sidebar-link">
-                <FaClipboardList className="icon" />
-                {isOpen && <span>Postulaciones</span>}
-                </Link>
-            </nav>
-            */}
         </div>
     );
 };
