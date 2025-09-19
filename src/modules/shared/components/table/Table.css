@@ -44,6 +44,7 @@
     border: 1px solid #0248a2;
     border-radius: 4px;
     background-color: aliceblue;
+    color: var(--color-negro);
 }
 
 .filter-input::placeholder{

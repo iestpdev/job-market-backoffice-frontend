@@ -1,11 +1,12 @@
 import { Link } from "react-router-dom";
 import { FaPlus } from "react-icons/fa";
 import useUsers from "../../hooks/useUsers";
+import useUsersAdmin from "../../hooks/useUsersAdmin";
 import useUserDelete from "../../hooks/useUserDelete";
 import UserTable from "../../components/UserTable/UserTable";
 
 export default function UserListPage() {
-    const { data: users = [], isLoading } = useUsers();
+    const { data: users = [], isLoading } = useUsersAdmin();
     const { mutate: deleteUser } = useUserDelete();
 
     const handleDelete = (user) => {
