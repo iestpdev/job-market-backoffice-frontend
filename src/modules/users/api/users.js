@@ -5,6 +5,12 @@ export const getAll = async () => {
     return data;
 };
 
+export const getAllUsersAdmin = async () => {
+    const { data } = await axios.get("/user/usersAdmin");
+    return data;
+};
+
+
 export const create = async (student) => {
     const { data } = await axios.post("/user", student);
     return data;
