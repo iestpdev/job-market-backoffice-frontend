@@ -18,6 +18,7 @@ export default function StudentTable({ students, onView, onDelete }) {
         () => [
             { accessorKey: "NOMBRES", header: "Nombres", enableColumnFilter: true },
             { accessorKey: "APELLIDOS", header: "Apellidos", enableColumnFilter: true },
+            { accessorKey: "PROGRAMA_ESTUDIO", header: "Programa de estudio", enableColumnFilter: true },
             { accessorKey: "GENERO", header: "Género", enableColumnFilter: true },
             { accessorKey: "TIPO_DOI", header: "Tipo DOC", enableColumnFilter: true },
             { accessorKey: "NUM_DOI", header: "N° Documento", enableColumnFilter: true },
